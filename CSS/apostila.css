@@ -1,0 +1,213 @@
+@charset "UTF-8";
+
+span.logo {
+    cursor: pointer;
+}
+
+section.atividadesContainer {
+    background-color: #eff3f4;
+    border-radius: 20px;
+    margin: 20px;
+    padding: 20px;
+    padding-bottom: 40px;
+}
+
+h1 {
+    margin: 20px;
+    color: #4561DE;
+    font-size: 35px;
+}
+
+section.atividades {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+div.atividade {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: left;
+    width: 300px;
+    height: 250px;
+    background-image: url(../Image/background.jpg);
+    background-repeat: repeat;
+    background-size: 300px;
+    border-radius: 20px;
+    border: 1.5px solid #c9c9c9;
+    color: #555555;
+    position: relative;
+    flex-shrink: 0;
+}
+
+span.atividade {
+    margin-top: 60px;
+    font-size: 22px;
+}
+
+a.atividade {
+    margin-top: 50px;
+    background-color: #4561DE;
+    color: white;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 20px;
+    display: flex;
+}
+
+a.atividade:hover{
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.356);
+    display: flex;
+}
+
+a.atividade span {
+    margin-left: 10px;
+    display: block;
+    background-image: url(../Image/external_link.svg);
+    width: 18px;
+    height: 18px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+div#apostilaLoad {
+    margin-top: 200px;
+    width: 50px;
+}
+
+input.atividadeConcluida {
+    appearance: none;
+    background-color: #4561DE;
+    color: white;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 20px;
+    display: flex;
+    height: 42px;
+    margin-top: 10px;
+    content: "";
+}
+
+input.atividadeConcluida {
+    position: absolute;
+    opacity: 0;
+}
+
+label.atividadeConcluida {
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 32px;
+    border: 1.5px solid #c9c9c9;
+    background-color: #EFF3F4;
+    border-radius: 8px;
+    color: #555555;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+}
+
+label.atividadeConcluida::before {
+    content: "Marcar como concluída";
+}
+
+input.atividadeConcluida:checked + label.atividadeConcluida {
+    background-color: #2fb336;
+    color: white;
+    border: none;
+}
+
+input.atividadeConcluida:checked + label.atividadeConcluida::before {
+    content: "Concluída ✓";
+}
+
+@media (max-width: 768px) {
+
+    section.atividadesContainer {
+        margin: 10px;
+        padding: 12px;
+        padding-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 26px;
+        margin: 12px;
+    }
+
+    section.atividades {
+        justify-content: center;
+        align-content: center;
+    }
+
+    div.atividade {
+        margin: 12px;
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        min-height: 250px;
+        padding: 20px 15px;
+        background-size: cover;
+        background-position: center;
+        justify-content: center;
+    }
+
+    span.atividade {
+        margin-top: 0;
+        font-size: 24px;
+        text-align: center;
+        transform: translateY(10px);
+    }
+
+    a.atividade {
+        margin-top: 60px;
+    }
+
+    label.atividadeConcluida {
+        width: 100%;
+        max-width: 260px;
+        margin-top: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    section.atividadesContainer {
+        margin: 8px;
+        padding: 10px;
+        border-radius: 14px;
+    }
+
+    h1 {
+        font-size: 32px;
+        margin: 8px;
+    }
+
+    div.atividade {
+        margin: 10px 0;
+        min-height: 220px;
+        padding: 18px 12px;
+    }
+
+    span.atividade {
+        font-size: 24px;
+        transform: translateY(10px);
+    }
+
+    a.atividade {
+        font-size: 15px;
+        padding: 10px 18px;
+        margin-top: 60px;
+    }
+
+    label.atividadeConcluida {
+        font-size: 14px;
+        height: 30px;
+    }
+}
+
+/* © 2026 Filipe Mairinck Vitorino. Todos os direitos reservados. */

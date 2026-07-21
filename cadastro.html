@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Protech Hub</title>
+    <link rel="stylesheet" href="CSS/common.css">
+    <link rel="stylesheet" href="CSS/cadastro.css">
+    <link rel="shortcut icon" href="Image/favicon.svg" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <span class="logo"></span>
+    </header>
+    <main>
+        <div class="selecionar">
+            <button id="ativaCadastro" type="button">Cadastrar</button>
+            <button id="ativaKits" type="button">Kits</button>
+        </div>
+
+        <section class="login">
+            
+            <form action="#" method="post" class="cadastro">
+                <div class="campo">
+                    <label for="ctr">CTR</label>
+                    <input type="number" name="ctr" class="ctr" placeholder="Digite o CTR" required>
+                </div>
+                <div class="campo">
+                    <label for="senha">Senha</label>
+                    <input type="textfield" name="senha" id="senha" placeholder="Digite a senha" required>
+                </div>
+                <button id="cadastrar" type="submit" style="display: none;">Cadastrar</button>
+                <button id="gerarSenha" type="button">Gerar Senha</button>
+                <div class="loader" id="cadastroLoad"></div>
+            </form>
+
+            <form action="#" method="get" class="kits">
+                <div class="campo">
+                    <label for="ctr">CTR</label>
+                    <input type="number" name="ctr" class="ctr" placeholder="Digite o CTR" required>
+                    <button type="button" id="buscaCTR"></button>
+                    <div class="loader" id="buscaLoad"></div>
+                </div>
+                <div id="kitOcult">
+                    <div class="campo">
+                        <label for="kit1">Kit 1</label>
+                        <input type="checkbox" name="kit1" id="kit1">
+                    </div>
+                    <div class="campo">
+                        <label for="kit2">Kit 2</label>
+                        <input type="checkbox" name="kit2" id="kit2">
+                    </div>
+                    <div class="campo">
+                        <span id="mostraSenha"></span>
+                    </div>
+                    <button type="submit" id="confirmaKits">Confirma</button>
+                    <div class="loader" id="confirmaKitLoad"></div>
+                </div>
+            </form>
+            
+        </section>
+    </main>
+    <footer>
+        <span class="logo"></span>
+    </footer>
+<script type="module" src="Script/cadastro.js"></script>
+<script type="module" src="Script/API.js"></script>
+</body>
+</html>
+
+<!-- © 2026 Filipe Mairinck Vitorino. Todos os direitos reservados. -->
