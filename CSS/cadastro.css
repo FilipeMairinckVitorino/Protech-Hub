@@ -1,0 +1,210 @@
+@charset "UTF-8";
+
+section.login {
+    margin: auto;
+    margin-top: 30px;
+    padding: 20px;
+    width: 500px;
+    background-color: #eff3f4;
+    border-radius: 20px;
+    background-image: url(../Image/background.jpg);
+    background-repeat: repeat;
+    background-size: 300px;
+    border: 1.5px solid rgb(201, 201, 201);
+    color: #4561DE;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input:not([type="checkbox"]){
+    width: 250px;
+    text-indent: 12px;
+    height: 40px;
+    border-radius: 25px;
+    border: 1.5px solid #acacac;
+    display: block;
+}
+
+input.ctr {
+    appearance: textfield;
+}
+
+label {
+    font-size: large;
+    margin-right: 10px;
+    display: block;
+    white-space: nowrap;
+}
+
+button#cadastrar, button#gerarSenha, button#confirmaKits {
+    padding: 8px 22px;
+    border-radius: 20px;
+    border: none;
+    background-color: #4561DE;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: large;
+    cursor: pointer;
+}
+
+button#cadastrar:hover, button#gerarSenha:hover, button#confirmaKits:hover {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.356);
+}
+
+div.campo {
+    margin: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+form.kits {
+    display: none;
+}
+
+form.kits div.campo {
+    margin: 25px;
+    justify-content: center;
+}
+
+span#mostraSenha {
+    color: rgb(48, 48, 48);
+    font-size: larger;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    background: #d32f2f;
+}
+
+input[type="checkbox"]::before {
+    content: "✕";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+input[type="checkbox"]:checked {
+    background: #2fb336;
+}
+
+input[type="checkbox"]:checked::before {
+    content: "✓";
+}
+
+button#buscaCTR {
+    appearance: none;
+    margin-left: 10px;
+    width: 28px;
+    height: 28px;
+    border: none;
+    background-image: url(../Image/lupa.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+div.selecionar {
+    margin: auto;
+    margin-top: 130px;
+    width: fit-content;
+    display: flex;
+    border-radius: 30px;
+    padding: 5px;
+    border: 1.5px solid #acacac;
+    background-image: url(../Image/background.jpg);
+    background-repeat: repeat;
+    background-size: 300px;
+}
+
+div.selecionar button {
+    margin: 5px;
+    min-width: 100px;
+    padding: 8px 22px;
+    border-radius: 20px;
+    border: none;
+    background-color: #4561DE;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: large;
+    cursor: pointer;
+}
+
+button#ativaKits:hover {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.356);
+}
+
+button#ativaCadastro {
+    box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.356);
+    color: rgba(247, 246, 246, 0.596);
+    cursor: auto;
+}
+
+button#confirmaKits {
+    margin-top: 5px;
+}
+
+div#kitOcult {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    section.login {
+        width: 92%;
+        padding: 15px;
+    }
+    div.campo {
+        margin: 20px 10px;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+    }
+    form.kits div.campo {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 15px 10px;
+    }
+    label {
+        margin: 0 0 8px 0;
+        text-align: left;
+    }
+    input:not([type="checkbox"]) {
+        width: 100%;
+        max-width: 100%;
+    }
+    div.selecionar {
+        margin-top: 60px;
+        width: 92%;
+        justify-content: center;
+    }
+    div.selecionar button {
+        flex: 1;
+        min-width: 0;
+        padding: 8px 12px;
+        font-size: 15px;
+    }
+}
+
+/* © 2026 Filipe Mairinck Vitorino. Todos os direitos reservados. */

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Protech Hub</title>
+    <link rel="stylesheet" href="CSS/common.css">
+    <link rel="stylesheet" href="CSS/login.css">
+    <link rel="shortcut icon" href="Image/favicon.svg" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <span class="logo"></span>
+    </header>
+    <main>
+        <section class="login">
+            <form action="#" method="post">
+                <div class="campo">
+                    <label for="email">CTR</label>
+                    <input type="text" inputmode="numeric" pattern="[0-9]*" name="ctr" id="ctr" placeholder="Digite seu CTR" required>
+                </div>
+                <div class="campo">
+                    <label for="senha">Senha</label>
+                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
+                    <button id="olho" type="button"></button>
+                </div>
+                <button id="entrar" type="submit">Entrar</button>
+                <div class="loader" id="loginLoad"></div>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <span class="logo"></span>
+    </footer>
+<script type="module" src="Script/login.js"></script>
+<script type="module" src="Script/API.js"></script>
+</body>
+</html>
+
+<!-- © 2026 Filipe Mairinck Vitorino. Todos os direitos reservados. -->

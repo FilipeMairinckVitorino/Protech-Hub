@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+section.login {
+    margin: 100px auto;
+    padding: 20px;
+    width: 500px;
+    background-color: #eff3f4;
+    border-radius: 20px;
+    background-image: url(../Image/background.jpg);
+    background-repeat: repeat;
+    background-size: 300px;
+    border: 1.5px solid rgb(201, 201, 201);
+    color: #4561DE;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 250px;
+    text-indent: 12px;
+    height: 40px;
+    border-radius: 25px;
+    border: 1.5px solid #acacac;
+    display: block;
+}
+
+input#ctr {
+    appearance: textfield;
+}
+
+label {
+    font-size: large;
+    margin-right: 10px;
+    display: block;
+    white-space: nowrap;
+}
+
+button#entrar {
+    padding: 8px 22px;
+    border-radius: 20px;
+    border: none;
+    background-color: #4561DE;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: large;
+    cursor: pointer;
+}
+
+button#entrar:hover {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.356);
+}
+
+button#olho {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: transparent;
+    background-image: url(../Image/eye_closed.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    cursor: pointer;
+    position: absolute;
+    right: -30px;
+}
+
+button#olho.aberto {
+    background-image: url(../Image/eye_opened.svg);
+}
+
+div.campo {
+    margin: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    position: relative;
+}
+
+@media (max-width: 640px) {
+
+    form {
+        width: 92%;
+    }
+
+    section.login {
+        width: 92%;
+        margin: 40px auto;
+        padding: 15px;
+    }
+
+    div.campo {
+        margin: 20px 10px;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+    }
+
+    label {
+        margin: 0 0 8px 0;
+        text-align: left;
+    }
+
+    input {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    button#olho {
+        right: 12px;
+        top: auto;
+        bottom: 10px;
+    }
+}
+
+/* © 2026 Filipe Mairinck Vitorino. Todos os direitos reservados. */

@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+section.apostila {
+    margin: 20px auto;
+    padding: 10px;
+    width: 80%;
+    background-color: #eff3f4;
+    border-radius: 20px;
+    display: none;
+}
+
+h1 {
+    color: #4561DE;
+    margin: 20px;
+    font-size: 35px;
+}
+
+span#semApostilas {
+    margin-top: 50px;
+    text-align: center;
+    color: #4561DE;
+    display: none;
+}
+
+div.apostila {
+    margin: 50px;
+    border: 1.5px solid rgb(201, 201, 201);
+    border-radius: 20px;
+    padding: 25px;
+    background-color: white;
+    overflow: hidden;
+    display: flex;
+    background-image: url(../Image/background.jpg);
+    background-repeat: repeat;
+    background-size: 300px;
+    min-width: fit-content;
+}
+
+img.apostila {
+    height: 200px;
+    border-radius: 20px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.322);
+}
+
+a.apostila {
+    color: #4561DE;
+    text-decoration: none;
+    margin: auto 25px;
+    font-size: 30px;
+}
+
+div#indexLoad {
+    margin-top: 200px;
+    width: 50px;
+}
+
+@media (max-width: 768px) {
+
+    section.apostila {
+        width: 95%;
+        margin: 12px auto;
+    }
+
+    h1 {
+        font-size: 32px;
+        margin: 12px;
+    }
+
+    div.apostila {
+        margin: 20px;
+        padding: 30px 30px 20px 30px;
+        flex-direction: column;
+        align-items: center;
+        min-width: 0;
+    }
+    img.apostila {
+        height: auto;
+        width: 80%;
+        max-width: 260px;
+    }
+
+    a.apostila {
+        font-size: 30px;
+        margin: 24px 0 0;
+        text-align: center;
+    }
+
+}
+
+/* © 2026 Filipe Mairinck Vitorino. Todos os direitos reservados. */
