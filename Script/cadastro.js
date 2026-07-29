@@ -15,11 +15,6 @@ const buttonConfirmaKits = document.querySelector("button#confirmaKits")
 const spanMostraSenha = document.querySelector("span#mostraSenha")
 const userSalvo = JSON.parse(localStorage.getItem("user"))
 
-document.querySelectorAll("form").forEach(form => {
-    form.addEventListener("submit", (event) => {
-        event.preventDefault()
-    })
-})
 
 if(userSalvo == null || userSalvo.CTR != 0) {
     window.location.href = "login.html"
