@@ -2,6 +2,7 @@ const express = require("express");
 const { z } = require("zod");
 const { supabase } = require("../config/supabase");
 const { requireAuth } = require("../middleware/auth");
+const { calcularProgressoPorApostila } = require("../utils/progresso");
 
 const router = express.Router();
 
@@ -31,7 +32,35 @@ router.get("/apostilas", async (req, res, next) => {
 
     if (error) throw error;
 
-    res.json(apostilas);
+    const apostilaIds = apostilas.map((a) => a.id);
+
+    if (apostilaIds.length === 0) return res.json([]);
+
+    const { data: atividades, error: erroAtividades } = await supabase
+      .from("atividades")
+      .select("id, apostila")
+      .in("apostila", apostilaIds);
+
+    if (erroAtividades) throw erroAtividades;
+
+    const { data: concluidas, error: erroConcluidas } = await supabase
+      .from("atividades_concluidas")
+      .select("atividade_id, apostila")
+      .eq("aluno_id", req.user.id)
+      .eq("concluida", true)
+      .in("apostila", apostilaIds);
+
+    if (erroConcluidas) throw erroConcluidas;
+
+    const progresso = calcularProgressoPorApostila(atividades, concluidas);
+
+    res.json(
+      apostilas.map((apostila) => ({
+        ...apostila,
+        feitas: progresso[apostila.id]?.feitas || 0,
+        total: progresso[apostila.id]?.total || 0,
+      }))
+    );
   } catch (err) {
     next(err);
   }

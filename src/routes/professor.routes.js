@@ -2,6 +2,7 @@ const express = require("express");
 const { supabase } = require("../config/supabase");
 const { requireAuth, requireRole } = require("../middleware/auth");
 const { normalizarCPF, cpfValido } = require("../utils/cpf");
+const { calcularProgressoPorApostila } = require("../utils/progresso");
 
 const router = express.Router();
 
@@ -37,46 +38,34 @@ router.get("/progresso/:cpf", async (req, res, next) => {
 
     if (erroConcluidas) throw erroConcluidas;
 
-    const totalPorApostila = {};
-    atividades.forEach((atividade) => {
-      const apostila = atividade.apostila;
-      if (!totalPorApostila[apostila]) {
-        totalPorApostila[apostila] = { kit: atividade.kit, total: 0 };
-      }
-      totalPorApostila[apostila].total++;
-    });
+    const { data: apostilasInfo, error: erroApostilasInfo } = await supabase
+      .from("apostilas")
+      .select("id, nome");
 
-    const feitasPorApostila = {};
-    const idsContados = new Set();
+    if (erroApostilasInfo) throw erroApostilasInfo;
 
-    (concluidas || []).forEach((c) => {
-      if (idsContados.has(c.atividade_id)) return;
-      idsContados.add(c.atividade_id);
+    const nomesPorApostila = new Map((apostilasInfo || []).map((a) => [a.id, a.nome]));
+    const kitsPorApostila = new Map(atividades.map((a) => [a.apostila, a.kit]));
 
-      const atividade = atividades.find((a) => a.id === c.atividade_id);
-      if (!atividade) return;
+    const progresso = calcularProgressoPorApostila(atividades, concluidas);
 
-      const apostila = atividade.apostila;
-      feitasPorApostila[apostila] = (feitasPorApostila[apostila] || 0) + 1;
-    });
-
-    const completas = Object.keys(totalPorApostila)
+    const apostilasComProgresso = Object.keys(progresso)
       .map((apostila) => {
         const apostilaNum = Number(apostila);
-        const total = totalPorApostila[apostila].total;
-        const feitas = feitasPorApostila[apostila] || 0;
+        const { total, feitas } = progresso[apostila];
         return {
           apostila: apostilaNum,
-          kit: totalPorApostila[apostila].kit,
+          nome: nomesPorApostila.get(apostilaNum) || null,
+          kit: kitsPorApostila.get(apostilaNum) ?? null,
           total,
           feitas,
           completa: total > 0 && feitas >= total,
         };
       })
-      .filter((item) => item.completa)
+      .filter((item) => item.feitas > 0)
       .sort((a, b) => a.apostila - b.apostila);
 
-    res.json({ nome: aluno.nome, cpf: aluno.cpf, completas });
+    res.json({ nome: aluno.nome, cpf: aluno.cpf, apostilas: apostilasComProgresso });
   } catch (err) {
     next(err);
   }
