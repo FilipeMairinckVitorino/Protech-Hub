@@ -1,5 +1,5 @@
 import { getMe, postAluno, getAluno, editaAluno } from "./API.js"
-import { primeiroNome } from "./exportFunctions.js"
+import { primeiroNome, capitalizarNome } from "./exportFunctions.js"
 
 const inputNomeCadastro = document.querySelector("input#nomeCadastro")
 const inputCPFCadastro = document.querySelector("input#cpfCadastro")
@@ -53,7 +53,7 @@ if (!usuario || usuario.userLv != "admin") {
             return
         }
 
-        const resultado = await postAluno(primeiroNome(inputNomeCadastro.value), inputCPFCadastro.value, inputSenha.value)
+        const resultado = await postAluno(capitalizarNome(primeiroNome(inputNomeCadastro.value)), inputCPFCadastro.value, inputSenha.value)
 
         if (resultado) {
             inputNomeCadastro.value = ""
@@ -153,7 +153,7 @@ if (!usuario || usuario.userLv != "admin") {
             return
         }
 
-        editaAluno(cpfEncontrado, checkboxKit1.checked, checkboxKit2.checked, inputNomeAluno.value.trim())
+        editaAluno(cpfEncontrado, checkboxKit1.checked, checkboxKit2.checked, capitalizarNome(inputNomeAluno.value))
     })
 }
 
