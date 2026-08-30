@@ -34,15 +34,8 @@ if (!usuario) {
                             <div class="barraProgressoFundo">
                                 <div class="barraProgressoPreenchida${completa ? ' completa' : ''}" style="width: ${porcentagem}%"></div>
                             </div>
+                            <span class="barraProgressoTexto">${feitas} de ${total} atividades</span>
                         </div>
-                        <span class="contagemApostila">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="#4561DE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <rect x="6" y="4" width="12" height="16" rx="2"></rect>
-                                <path d="M9 4V2h6v2"></path>
-                                <path d="M9 11l2 2 4-4"></path>
-                            </svg>
-                            ${feitas} de ${total} atividades
-                        </span>
                     </div>
                 </div>
             `
