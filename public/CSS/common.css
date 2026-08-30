@@ -221,6 +221,7 @@ span.statusApostila.completa {
         height: auto;
         max-width: none;
         width: auto;
+        position: relative;
     }
 
     header span#nome_view, header button.logout{
@@ -238,6 +239,7 @@ span.statusApostila.completa {
         border-radius: 50%;
         font-size: 18px;
         flex-shrink: 0;
+        cursor: pointer;
     }
 
     header span#nome_view span.nomeCompleto {
@@ -246,6 +248,21 @@ span.statusApostila.completa {
 
     header span#nome_view span.nomeInicial {
         display: inline;
+    }
+
+    /* No mobile, o botão "Sair" vira um menu que só aparece ao tocar no
+       círculo com a inicial (classe .aberto é alternada por Script/logout.js) */
+    header button.logout {
+        display: none;
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        z-index: 20;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    section.user.aberto button.logout {
+        display: flex;
     }
 
     footer {
