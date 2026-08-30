@@ -1,36 +1,64 @@
-// Calcula, a partir da lista de atividades de uma ou mais apostilas e da lista
-// de atividades já concluídas por um aluno, quantas atividades cada apostila
-// tem no total e quantas dessas já foram concluídas.
-//
-// atividades: [{ id, apostila, ... }]
-// concluidas: [{ atividade_id, apostila, ... }] (já filtradas por aluno_id e concluida = true)
-//
-// Retorna: { [apostilaId]: { total: number, feitas: number } }
-function calcularProgressoPorApostila(atividades, concluidas) {
-  const progresso = {};
+import { getMe, getProgresso } from "./API.js"
 
-  (atividades || []).forEach((atividade) => {
-    const apostila = atividade.apostila;
-    if (!progresso[apostila]) {
-      progresso[apostila] = { total: 0, feitas: 0 };
-    }
-    progresso[apostila].total++;
-  });
+const usuario = await getMe()
 
-  const idsContados = new Set();
+if (!usuario || (usuario.userLv != "professor" && usuario.userLv != "admin")) {
+    window.location.href = "login.html"
+} else {
 
-  (concluidas || []).forEach((concluida) => {
-    if (idsContados.has(concluida.atividade_id)) return;
-    idsContados.add(concluida.atividade_id);
+    const nomeView = document.querySelector("span#nome_view")
+    const form = document.querySelector("form.progresso")
+    const inputCPF = document.querySelector("input#cpfProgresso")
+    const buttonBusca = document.querySelector("button#buscaCPF")
+    const loadBusca = document.querySelector("div#buscaLoad")
+    const sectionResultado = document.querySelector("section#resultado")
+    const tituloResultado = document.querySelector("h2#tituloResultado")
+    const divApostilas = document.querySelector("div#apostilasConcluidas")
+    const semApostilas = document.querySelector("span#semApostilas")
 
-    const apostila = concluida.apostila;
-    if (!progresso[apostila]) {
-      progresso[apostila] = { total: 0, feitas: 0 };
-    }
-    progresso[apostila].feitas++;
-  });
+    nomeView.innerHTML = usuario.nome
 
-  return progresso;
+    document.querySelector("span.logo").addEventListener("click", () => {
+        location.href = "index.html"
+    })
+
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault()
+
+        buttonBusca.style.display = 'none'
+        loadBusca.style.display = 'block'
+
+        const resultado = await getProgresso(inputCPF.value)
+
+        buttonBusca.style.display = ''
+        loadBusca.style.display = 'none'
+
+        if (!resultado) return
+
+        tituloResultado.innerHTML = `Apostilas concluídas de ${resultado.nome}`
+        divApostilas.innerHTML = ""
+
+        const apostilasCompletas = (resultado.apostilas || []).filter((a) => a.completa)
+
+        if (apostilasCompletas.length === 0) {
+            semApostilas.style.display = 'block'
+        } else {
+            semApostilas.style.display = 'none'
+
+            apostilasCompletas.forEach((apostila) => {
+                divApostilas.innerHTML += `
+                    <div class="apostilaConcluida">
+                        <div class="infoApostila">
+                            <span class="tituloApostila">${apostila.nome || `Apostila ${apostila.apostila}`}</span>
+                            <span class="detalheApostila">Kit ${apostila.kit ?? "-"} — <strong>${apostila.feitas}/${apostila.total}</strong> atividades concluídas</span>
+                        </div>
+                    </div>
+                `
+            })
+        }
+
+        sectionResultado.style.display = 'block'
+    })
 }
 
-module.exports = { calcularProgressoPorApostila };
+// © 2026 Filipe Mairinck Vitorino. Todos os direitos reservados.
