@@ -101,17 +101,12 @@ router.get("/:cpf", async (req, res, next) => {
   }
 });
 
-// Diferente do cadastro (que guarda só o primeiro nome), a edição aceita
-// o nome completo digitado, sem cortar para a primeira palavra.
-const nomeEdicaoSchema = z
-  .string()
-  .trim()
-  .min(1, "Informe o nome do aluno");
-
+// Igual ao cadastro: guarda só o primeiro nome do aluno, tanto criando
+// quanto editando.
 const atualizaSchema = z.object({
   kit1: z.boolean().optional(),
   kit2: z.boolean().optional(),
-  nome: nomeEdicaoSchema.optional(),
+  nome: nomeSchema.optional(),
 });
 
 router.patch("/:cpf", async (req, res, next) => {
