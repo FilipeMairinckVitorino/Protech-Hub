@@ -206,11 +206,7 @@ span.statusApostila.completa {
     header {
         padding: 12px;
         gap: 10px;
-    }
-
-    span.logo {
-        width: 150px;
-        height: 40px;
+        height: 100px;
     }
 
     section.user {
