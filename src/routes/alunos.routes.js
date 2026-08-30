@@ -101,10 +101,17 @@ router.get("/:cpf", async (req, res, next) => {
   }
 });
 
+// Diferente do cadastro (que guarda só o primeiro nome), a edição aceita
+// o nome completo digitado, sem cortar para a primeira palavra.
+const nomeEdicaoSchema = z
+  .string()
+  .trim()
+  .min(1, "Informe o nome do aluno");
+
 const atualizaSchema = z.object({
   kit1: z.boolean().optional(),
   kit2: z.boolean().optional(),
-  nome: nomeSchema.optional(),
+  nome: nomeEdicaoSchema.optional(),
 });
 
 router.patch("/:cpf", async (req, res, next) => {
@@ -123,14 +130,19 @@ router.patch("/:cpf", async (req, res, next) => {
       return res.status(400).json({ erro: "Nada para atualizar" });
     }
 
-    const { error, count } = await supabase
+    const { data, error } = await supabase
       .from("alunos")
       .update(dadosAtualizados)
       .eq("cpf", cpf)
-      .select("cpf", { count: "exact" });
+      .select("cpf");
 
     if (error) throw error;
-    if (!count) return res.status(404).json({ erro: "CPF não encontrado" });
+    // Checamos pelos dados retornados (não por "count"): o supabase-js nem
+    // sempre preenche "count" de forma confiável em updates, o que fazia
+    // esse endpoint responder 404 mesmo quando o aluno existia.
+    if (!data || data.length === 0) {
+      return res.status(404).json({ erro: "CPF não encontrado" });
+    }
 
     res.status(204).end();
   } catch (err) {
@@ -148,14 +160,16 @@ router.post("/:cpf/reset-senha", async (req, res, next) => {
     const senhaPlana = gerarSenhaAleatoria(10);
     const senhaCriptografada = encrypt(senhaPlana);
 
-    const { error, count } = await supabase
+    const { data, error } = await supabase
       .from("alunos")
       .update({ senha: senhaCriptografada })
       .eq("cpf", cpf)
-      .select("cpf", { count: "exact" });
+      .select("cpf");
 
     if (error) throw error;
-    if (!count) return res.status(404).json({ erro: "CPF não encontrado" });
+    if (!data || data.length === 0) {
+      return res.status(404).json({ erro: "CPF não encontrado" });
+    }
 
     res.json({ cpf, senha: senhaPlana });
   } catch (err) {
