@@ -37,6 +37,7 @@ fieldset.questao {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    border: none;
 }
 
 fieldset.questao legend {
