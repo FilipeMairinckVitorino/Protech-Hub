@@ -4,7 +4,6 @@ section.apostila {
     margin: 20px auto;
     padding: 10px;
     width: 80%;
-    background-color: #eff3f4;
     border-radius: 20px;
     display: none;
 }
@@ -24,15 +23,21 @@ span#semApostilas {
 
 div.apostila {
     margin: 50px;
-    border: 1.5px solid rgb(201, 201, 201);
     border-radius: 20px;
     padding: 25px;
-    background-color: white;
+    background-image: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 0.95) 30%,
+            rgba(255, 255, 255, 0.5) 60%,
+            rgba(255, 255, 255, 0) 100%
+        ),
+        url("../Image/background.jpg");
+    background-repeat: no-repeat,repeat;
+    background-size: 100% 100%, 300px;
+    background-position: center, center;
     overflow: hidden;
     display: flex;
-    background-image: url(../Image/background.jpg);
-    background-repeat: repeat;
-    background-size: 300px;
     min-width: fit-content;
 }
 
@@ -67,7 +72,7 @@ div#indexLoad {
 
     section.apostila {
         width: 95%;
-        margin: 12px auto;
+        margin: 12px auto;        
     }
 
     section.apostila h1 {
@@ -81,7 +86,16 @@ div#indexLoad {
         flex-direction: column;
         align-items: center;
         min-width: 0;
+        background-image: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.945) 0%,
+            rgba(255, 255, 255, 0.589) 30%,
+            rgba(255, 255, 255, 0.288) 60%,
+            rgba(255, 255, 255, 0) 100%
+        ),
+        url("../Image/background.jpg");
     }
+
     img.apostila {
         height: auto;
         width: 80%;
