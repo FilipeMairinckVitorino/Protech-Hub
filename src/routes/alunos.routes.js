@@ -67,10 +67,10 @@ router.post("/", async (req, res, next) => {
 
 router.get("/:cpf", async (req, res, next) => {
   try {
+    // Aqui só normalizamos (removemos pontuação) para casar com o formato
+    // salvo no banco. Não exigimos 11 dígitos: a busca de kits deve poder
+    // ser feita com qualquer valor, retornando 404 se não encontrar.
     const cpf = normalizarCPF(req.params.cpf);
-    if (!cpfValido(cpf)) {
-      return res.status(400).json({ erro: "CPF inválido" });
-    }
 
     const { data: aluno, error } = await supabase
       .from("alunos")
@@ -109,10 +109,8 @@ const atualizaSchema = z.object({
 
 router.patch("/:cpf", async (req, res, next) => {
   try {
+    // Mesma lógica do GET acima: só normaliza, sem exigir 11 dígitos.
     const cpf = normalizarCPF(req.params.cpf);
-    if (!cpfValido(cpf)) {
-      return res.status(400).json({ erro: "CPF inválido" });
-    }
 
     const { kit1, kit2, nome } = atualizaSchema.parse(req.body);
 
