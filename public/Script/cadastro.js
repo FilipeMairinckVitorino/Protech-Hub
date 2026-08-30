@@ -153,7 +153,7 @@ if (!usuario || usuario.userLv != "admin") {
             return
         }
 
-        editaAluno(cpfEncontrado, checkboxKit1.checked, checkboxKit2.checked, primeiroNome(inputNomeAluno.value))
+        editaAluno(cpfEncontrado, checkboxKit1.checked, checkboxKit2.checked, inputNomeAluno.value.trim())
     })
 }
 
