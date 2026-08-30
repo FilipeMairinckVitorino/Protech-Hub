@@ -114,6 +114,10 @@ div.infoApostila {
     margin: auto 25px;
     color: #4561DE;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 220px;
 }
 
 div.infoApostila span.tituloApostila {
@@ -123,13 +127,6 @@ div.infoApostila span.tituloApostila {
 
 strong {
     color: #2fb336;
-}
-
-div.infoApostila span.detalheApostila {
-    display: block;
-    margin-top: 20px;
-    font-size: 16px;
-    color: rgb(48, 48, 48);
 }
 
 span#semApostilas {
@@ -163,6 +160,7 @@ span#semApostilas {
     div.infoApostila {
         margin: 15px 0 0 0;
         text-align: center;
+        align-items: center;
     }
 }
 

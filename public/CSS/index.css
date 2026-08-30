@@ -43,10 +43,18 @@ img.apostila {
     cursor: pointer;
 }
 
+div.infoApostilaIndex {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    margin: auto 25px;
+    gap: 18px;
+}
+
 a.apostila {
     color: #4561DE;
     text-decoration: none;
-    margin: auto 25px;
     font-size: 30px;
 }
 
@@ -80,9 +88,14 @@ div#indexLoad {
         max-width: 260px;
     }
 
+    div.infoApostilaIndex {
+        align-items: center;
+        margin: 24px 0 0;
+        width: 100%;
+    }
+
     a.apostila {
         font-size: 30px;
-        margin: 24px 0 0;
         text-align: center;
     }
 

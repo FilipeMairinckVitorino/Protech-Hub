@@ -19,10 +19,24 @@ if (!usuario) {
 
     if (conteudo) {
         conteudo.forEach(element => {
+
+            const total = element.total || 0
+            const feitas = element.feitas || 0
+            const porcentagem = total > 0 ? Math.min(100, Math.round((feitas / total) * 100)) : 0
+            const completa = total > 0 && feitas >= total
+
             sectionApostilas.innerHTML += `
                 <div class="apostila" data-id="${element.id}">
                     <img src="Image/Apostilas/${element.id}.png" alt="apostila" class="apostila">
-                    <a href="apostila.html" class="apostila">${element.id} - ${element.nome}</a>
+                    <div class="infoApostilaIndex">
+                        <a href="apostila.html" class="apostila">${element.id} - ${element.nome}</a>
+                        <div class="barraProgresso" role="progressbar" aria-valuenow="${porcentagem}" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso da apostila ${element.id}">
+                            <div class="barraProgressoFundo">
+                                <div class="barraProgressoPreenchida${completa ? ' completa' : ''}" style="width: ${porcentagem}%"></div>
+                            </div>
+                            <span class="barraProgressoTexto">${feitas} de ${total} atividades</span>
+                        </div>
+                    </div>
                 </div>
             `
         })
@@ -47,7 +61,7 @@ if (!usuario) {
 
     document.querySelectorAll("img.apostila").forEach(element => {
         element.addEventListener("click", () => {
-            element.nextElementSibling.click()
+            element.nextElementSibling.querySelector("a.apostila").click()
         })
     })
 

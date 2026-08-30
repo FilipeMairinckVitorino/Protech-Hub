@@ -35,22 +35,36 @@ if (!usuario || (usuario.userLv != "professor" && usuario.userLv != "admin")) {
 
         if (!resultado) return
 
-        tituloResultado.innerHTML = `Apostilas concluídas de ${resultado.nome}`
+        tituloResultado.innerHTML = `Progresso de ${resultado.nome}`
         divApostilas.innerHTML = ""
 
-        const apostilasCompletas = (resultado.apostilas || []).filter((a) => a.completa)
+        // O backend (/api/professor/progresso/:cpf) já retorna somente as
+        // apostilas em que o aluno concluiu pelo menos uma atividade,
+        // incluindo tanto as que estão em andamento quanto as já concluídas.
+        const apostilas = resultado.apostilas || []
 
-        if (apostilasCompletas.length === 0) {
+        if (apostilas.length === 0) {
             semApostilas.style.display = 'block'
         } else {
             semApostilas.style.display = 'none'
 
-            apostilasCompletas.forEach((apostila) => {
+            apostilas.forEach((apostila) => {
+                const total = apostila.total || 0
+                const feitas = apostila.feitas || 0
+                const porcentagem = total > 0 ? Math.min(100, Math.round((feitas / total) * 100)) : 0
+                const completa = !!apostila.completa
+
                 divApostilas.innerHTML += `
                     <div class="apostilaConcluida">
                         <div class="infoApostila">
                             <span class="tituloApostila">${apostila.nome || `Apostila ${apostila.apostila}`}</span>
-                            <span class="detalheApostila">Kit ${apostila.kit ?? "-"} — <strong>${apostila.feitas}/${apostila.total}</strong> atividades concluídas</span>
+                            <div class="barraProgresso" role="progressbar" aria-valuenow="${porcentagem}" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso da apostila ${apostila.apostila}">
+                                <div class="barraProgressoFundo">
+                                    <div class="barraProgressoPreenchida${completa ? ' completa' : ''}" style="width: ${porcentagem}%"></div>
+                                </div>
+                                <span class="barraProgressoTexto">${feitas} de ${total} atividades</span>
+                            </div>
+                            <span class="statusApostila${completa ? ' completa' : ''}">${completa ? 'Concluída' : 'Em andamento'}</span>
                         </div>
                     </div>
                 `
