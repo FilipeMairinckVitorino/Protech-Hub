@@ -1,4 +1,5 @@
 import { getMe, getApostilas } from "./API.js"
+import { nomeViewHTML } from "./exportFunctions.js"
 
 const userViewer = document.querySelector("span#nome_view")
 const sectionApostilas = document.querySelector("section.apostila")
@@ -13,7 +14,7 @@ if (!usuario) {
     window.location.href = "progresso.html"
 } else {
 
-    userViewer.innerHTML = usuario.nome
+    userViewer.innerHTML = nomeViewHTML(usuario.nome)
 
     const conteudo = await getApostilas()
 

@@ -1,4 +1,5 @@
 import { getMe, getQuestoes, responderAtividade } from "./API.js"
+import { nomeViewHTML } from "./exportFunctions.js"
 
 const atividade_id = new URLSearchParams(window.location.search).get("atividade_id")
 const questoesContainer = document.querySelector("div#questoesContainer")
@@ -14,7 +15,7 @@ if (!usuario) {
     window.location.href = "apostila.html"
 } else {
 
-    userViewer.innerHTML = usuario.nome
+    userViewer.innerHTML = nomeViewHTML(usuario.nome)
 
     criarPerguntas()
 }

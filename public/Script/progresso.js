@@ -1,4 +1,5 @@
 import { getMe, getProgresso } from "./API.js"
+import { nomeViewHTML } from "./exportFunctions.js"
 
 const usuario = await getMe()
 
@@ -16,7 +17,7 @@ if (!usuario || (usuario.userLv != "professor" && usuario.userLv != "admin")) {
     const divApostilas = document.querySelector("div#apostilasConcluidas")
     const semApostilas = document.querySelector("span#semApostilas")
 
-    nomeView.innerHTML = usuario.nome
+    nomeView.innerHTML = nomeViewHTML(usuario.nome)
 
     document.querySelector("span.logo").addEventListener("click", () => {
         location.href = "index.html"

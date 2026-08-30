@@ -1,4 +1,5 @@
 import { getMe, getAtividades } from "./API.js"
+import { nomeViewHTML } from "./exportFunctions.js"
 
 const apostila = localStorage.getItem("apostila")
 const userViewer = document.querySelector("span#nome_view")
@@ -16,7 +17,7 @@ if (!usuario) {
     location.href = "index.html"
 } else {
 
-    userViewer.innerHTML = usuario.nome
+    userViewer.innerHTML = nomeViewHTML(usuario.nome)
 
     const conteudo = await getAtividades(apostila)
 

@@ -21,4 +21,10 @@ export function primeiroNome(valor) {
     return String(valor ?? "").trim().split(/\s+/)[0] || ""
 }
 
+export function nomeViewHTML(nome) {
+    const nomeSeguro = String(nome ?? "").trim()
+    const inicial = nomeSeguro.charAt(0).toUpperCase()
+    return `<span class="nomeCompleto">${nomeSeguro}</span><span class="nomeInicial">${inicial}</span>`
+}
+
 // © 2026 Filipe Mairinck Vitorino. Todos os direitos reservados.
