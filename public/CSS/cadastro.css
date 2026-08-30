@@ -176,6 +176,10 @@ div#kitOcult {
     display: none;
 }
 
+div#campoNomeAluno {
+    justify-self: left;
+}
+
 @media (max-width: 640px) {
     section.login {
         width: 92%;
