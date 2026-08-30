@@ -20,13 +20,24 @@ body {
     overflow-x: hidden;
     font-weight: bold;
     letter-spacing: 1px;
+    position: relative;
+    background: transparent;
+}
 
-    background-image: linear-gradient(rgba(255, 255, 255, 0.822)), url(../Image/fundo.svg);
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.822)),
+        url(../Image/fundo.svg);
     background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
-    background-attachment: fixed;
-
-
+    transform: translateZ(0);
+    will-change: transform;
+    pointer-events: none;
 }
 
 header {
@@ -59,7 +70,8 @@ span.logo {
     background-position: center;
 }
 
-header span#nome_view, button.logout {
+header span#nome_view,
+button.logout {
     appearance: none;
     border: none;
     display: flex;
@@ -89,9 +101,6 @@ button.logout:hover {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.356);
 }
 
-/* Nome do usuário no header: nome completo no desktop, só a inicial no mobile,
-   pra não estourar o layout com nomes grandes. As spans .nomeCompleto/.nomeInicial
-   são geradas pela função nomeViewHTML() em Script/exportFunctions.js */
 header span#nome_view span.nomeInicial {
     display: none;
 }
@@ -114,7 +123,6 @@ footer span.logo {
     background-image: url(../Image/Logo\ Protech\ \(footer\).svg);
 }
 
-
 div.loader {
     display: none;
     margin: auto;
@@ -123,7 +131,7 @@ div.loader {
     aspect-ratio: 1;
     border-radius: 50%;
     background: #4561DE;
-    --_m: conic-gradient(#0000 10%,#000), linear-gradient(#000 0 0) content-box;
+    --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
     -webkit-mask: var(--_m);
     mask: var(--_m);
     -webkit-mask-composite: source-out;
@@ -147,9 +155,12 @@ input[type="number"] {
     appearance: textfield;
 }
 
-@keyframes l3 {to{transform: rotate(1turn)}}
+@keyframes l3 {
+    to {
+        transform: rotate(1turn);
+    }
+}
 
-/* Barra de progresso reutilizada na tela inicial do aluno e na página do professor */
 div.barraProgresso {
     display: flex;
     flex-direction: column;
@@ -224,7 +235,8 @@ span.statusApostila.completa {
         position: relative;
     }
 
-    header span#nome_view, header button.logout{
+    header span#nome_view,
+    header button.logout {
         height: auto;
         font-size: 14px;
         max-width: 100%;
@@ -253,9 +265,6 @@ span.statusApostila.completa {
         display: inline;
     }
 
-    /* No mobile, o botão "Sair" vira um círculo com o ícone (sem texto), que só
-       aparece com uma animação rápida ao tocar no círculo com a inicial
-       (classe .aberto é alternada por Script/logout.js) */
     header button.logout {
         font-size: 0;
         background-image: url(../Image/sair.svg);
@@ -285,7 +294,7 @@ span.statusApostila.completa {
     footer {
         height: 80px;
     }
-    
+
     footer span.logo {
         width: 160px;
     }
