@@ -202,17 +202,25 @@ span.statusApostila.completa {
 }
 
 @media (max-width: 640px) {
-    
+
     header {
         padding: 12px;
-        flex-wrap: wrap;
         gap: 10px;
     }
 
+    span.logo {
+        width: 150px;
+        height: 40px;
+    }
+
     section.user {
-        height: 70px;
-        max-width: 100%;
-        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        height: auto;
+        max-width: none;
+        width: auto;
     }
 
     header span#nome_view, header button.logout{
@@ -225,10 +233,11 @@ span.statusApostila.completa {
     header span#nome_view {
         min-width: 0;
         width: 40px;
+        height: 40px;
         padding: 0;
         border-radius: 50%;
-        aspect-ratio: 1;
         font-size: 18px;
+        flex-shrink: 0;
     }
 
     header span#nome_view span.nomeCompleto {
