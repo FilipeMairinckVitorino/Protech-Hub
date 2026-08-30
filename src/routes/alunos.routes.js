@@ -22,8 +22,14 @@ const cpfSchema = z
   .transform(normalizarCPF)
   .refine(cpfValido, { message: "CPF precisa ter 11 dígitos" });
 
+const nomeSchema = z
+  .string()
+  .trim()
+  .min(1, "Informe o nome do aluno")
+  .transform((valor) => valor.split(/\s+/)[0]);
+
 const cadastroSchema = z.object({
-  nome: z.string().trim().min(1, "Informe o nome do aluno"),
+  nome: nomeSchema,
   cpf: cpfSchema,
   senha: z.string().min(4, "Senha muito curta"),
 });
@@ -98,7 +104,7 @@ router.get("/:cpf", async (req, res, next) => {
 const atualizaSchema = z.object({
   kit1: z.boolean().optional(),
   kit2: z.boolean().optional(),
-  nome: z.string().trim().min(1).optional(),
+  nome: nomeSchema.optional(),
 });
 
 router.patch("/:cpf", async (req, res, next) => {

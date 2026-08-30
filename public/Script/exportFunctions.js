@@ -17,4 +17,8 @@ export function normalizarCPF(valor) {
     return String(valor ?? "").replace(/\D/g, "")
 }
 
+export function primeiroNome(valor) {
+    return String(valor ?? "").trim().split(/\s+/)[0] || ""
+}
+
 // © 2026 Filipe Mairinck Vitorino. Todos os direitos reservados.
