@@ -80,6 +80,10 @@ header span#nome_view, button.logout {
     white-space: nowrap;
 }
 
+header span#nome_view {
+    min-height: 42px;
+}
+
 button.logout:hover {
     cursor: pointer;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.356);
