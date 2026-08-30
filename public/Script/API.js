@@ -14,14 +14,17 @@ async function chamarAPI(caminho, opcoes = {}) {
     return resposta
 }
 
-export async function login(cpf, senha) {
+export async function login(usuario, senha) {
 
     loadingInit(document.querySelector("button#entrar"), document.querySelector("div#loginLoad"))
 
     try {
+        // O login aceita CPF (alunos) ou qualquer outro identificador
+        // (nome, número específico etc. para admins/professores), então
+        // aqui NÃO normalizamos/removemos caracteres do valor digitado.
         const resposta = await chamarAPI("/auth/login", {
             method: "POST",
-            body: JSON.stringify({ cpf: normalizarCPF(cpf), senha })
+            body: JSON.stringify({ cpf: usuario, senha })
         })
 
         if (!resposta.ok) {
