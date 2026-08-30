@@ -20,24 +20,11 @@ body {
     overflow-x: hidden;
     font-weight: bold;
     letter-spacing: 1px;
-    position: relative;
-    background: transparent;
-}
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background:
-        linear-gradient(rgba(255, 255, 255, 0.822)),
-        url(../Image/fundo.svg);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.822)), url(../Image/fundo.svg);
     background-repeat: no-repeat;
-    background-position: center;
     background-size: cover;
-    transform: translateZ(0);
-    will-change: transform;
-    pointer-events: none;
+    background-attachment: fixed;
 }
 
 header {
@@ -70,8 +57,7 @@ span.logo {
     background-position: center;
 }
 
-header span#nome_view,
-button.logout {
+header span#nome_view, button.logout {
     appearance: none;
     border: none;
     display: flex;
@@ -131,7 +117,7 @@ div.loader {
     aspect-ratio: 1;
     border-radius: 50%;
     background: #4561DE;
-    --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+    --_m: conic-gradient(#0000 10%,#000), linear-gradient(#000 0 0) content-box;
     -webkit-mask: var(--_m);
     mask: var(--_m);
     -webkit-mask-composite: source-out;
@@ -155,11 +141,7 @@ input[type="number"] {
     appearance: textfield;
 }
 
-@keyframes l3 {
-    to {
-        transform: rotate(1turn);
-    }
-}
+@keyframes l3 {to{transform: rotate(1turn)}}
 
 div.barraProgresso {
     display: flex;
@@ -235,8 +217,7 @@ span.statusApostila.completa {
         position: relative;
     }
 
-    header span#nome_view,
-    header button.logout {
+    header span#nome_view, header button.logout{
         height: auto;
         font-size: 14px;
         max-width: 100%;
@@ -294,7 +275,7 @@ span.statusApostila.completa {
     footer {
         height: 80px;
     }
-
+    
     footer span.logo {
         width: 160px;
     }
