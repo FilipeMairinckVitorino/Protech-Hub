@@ -6,7 +6,6 @@ const { assinarToken } = require("../utils/jwt");
 const { NOME_COOKIE, opcoesCookie } = require("../utils/cookie");
 const { requireAuth } = require("../middleware/auth");
 const { decrypt, compararSeguro } = require("../utils/crypto");
-const { normalizarCPF, cpfValido } = require("../utils/cpf");
 
 const router = express.Router();
 
@@ -18,11 +17,15 @@ const loginLimiter = rateLimit({
   message: { erro: "Muitas tentativas de login. Tente novamente mais tarde." },
 });
 
+// No login, o campo "cpf" funciona como identificador de usuário genérico:
+// alunos usam o CPF, mas admins e professores podem usar nome ou qualquer
+// outro valor cadastrado diretamente no banco. Por isso, aqui não fazemos
+// nenhuma validação de formato de CPF — só garantimos que não veio vazio.
 const loginSchema = z.object({
   cpf: z
     .string()
-    .transform(normalizarCPF)
-    .refine(cpfValido, { message: "CPF inválido" }),
+    .trim()
+    .min(1, { message: "Informe seu usuário" }),
   senha: z.string().min(1),
 });
 
