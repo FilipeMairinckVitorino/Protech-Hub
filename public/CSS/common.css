@@ -225,20 +225,23 @@ span.statusApostila.completa {
     }
 
     header span#nome_view, header button.logout{
-        padding: 8px 12px;
         height: auto;
         font-size: 14px;
         max-width: 100%;
     }
 
-    header span#nome_view {
+    header span#nome_view,
+    header button.logout {
         min-width: 0;
         width: 40px;
         height: 40px;
         padding: 0;
         border-radius: 50%;
-        font-size: 18px;
         flex-shrink: 0;
+    }
+
+    header span#nome_view {
+        font-size: 18px;
         cursor: pointer;
     }
 
@@ -250,19 +253,33 @@ span.statusApostila.completa {
         display: inline;
     }
 
-    /* No mobile, o botão "Sair" vira um menu que só aparece ao tocar no
-       círculo com a inicial (classe .aberto é alternada por Script/logout.js) */
+    /* No mobile, o botão "Sair" vira um círculo com o ícone (sem texto), que só
+       aparece com uma animação rápida ao tocar no círculo com a inicial
+       (classe .aberto é alternada por Script/logout.js) */
     header button.logout {
-        display: none;
+        font-size: 0;
+        background-image: url(../Image/sair.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 18px 18px;
         position: absolute;
         top: calc(100% + 8px);
         right: 0;
         z-index: 20;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+        opacity: 0;
+        transform: translateY(-6px) scale(0.9);
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.15s ease, transform 0.15s ease, visibility 0s linear 0.15s;
     }
 
     section.user.aberto button.logout {
-        display: flex;
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        visibility: visible;
+        pointer-events: auto;
+        transition: opacity 0.15s ease, transform 0.15s ease, visibility 0s linear 0s;
     }
 
     footer {
