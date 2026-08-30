@@ -27,4 +27,12 @@ export function nomeViewHTML(nome) {
     return `<span class="nomeCompleto">${nomeSeguro}</span><span class="nomeInicial">${inicial}</span>`
 }
 
+export function capitalizarNome(valor) {
+    return String(valor ?? "")
+        .trim()
+        .split(/\s+/)
+        .map(palavra => palavra.charAt(0).toUpperCase() + palavra.slice(1).toLowerCase())
+        .join(" ")
+}
+
 // © 2026 Filipe Mairinck Vitorino. Todos os direitos reservados.
