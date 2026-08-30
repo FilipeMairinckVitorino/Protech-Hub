@@ -36,12 +36,15 @@ section.user {
     align-items: center;
     justify-content: space-between;
     height: 90px;
+    max-width: 45%;
+    min-width: 0;
 }
 
 span.logo {
     margin: auto 0px;
     width: 200px;
     height: 50px;
+    flex-shrink: 0;
     background-image: url(../Image/Logo\ Protech.svg);
     background-repeat: no-repeat;
     background-position: center;
@@ -55,6 +58,7 @@ header span#nome_view, button.logout {
     flex-direction: column;
     justify-content: center;
     min-width: 80px;
+    max-width: 100%;
     padding: 10px 15px;
     background-color: #4561DE;
     color: white;
@@ -62,6 +66,9 @@ header span#nome_view, button.logout {
     user-select: none;
     font-size: 18px;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 button.logout:hover {
@@ -132,12 +139,15 @@ input[type="number"] {
 
     section.user {
         height: 70px;
+        max-width: 100%;
+        width: 100%;
     }
 
     header span#nome_view, header button.logout{
         padding: 8px 12px;
         height: auto;
         font-size: 14px;
+        max-width: 100%;
     }
 
     footer {
