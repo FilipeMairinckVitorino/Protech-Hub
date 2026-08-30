@@ -1,18 +1,38 @@
 @charset "UTF-8";
 
+body:has(section.apostila) {
+    background-color: #eef2fb;
+    background-image:
+        radial-gradient(circle at -5% 10%, #dce6fa 0%, rgba(220, 230, 250, 0) 45%),
+        radial-gradient(circle at 105% 60%, #e3eafc 0%, rgba(227, 234, 252, 0) 40%);
+    background-repeat: no-repeat;
+}
+
 section.apostila {
-    margin: 20px auto;
+    margin: 30px auto;
     padding: 10px;
     width: 80%;
-    background-color: #eff3f4;
+    background-color: transparent;
     border-radius: 20px;
     display: none;
 }
 
 section.apostila h1 {
     color: #4561DE;
-    margin: 20px;
-    font-size: 35px;
+    margin: 10px 20px 6px;
+    font-size: 36px;
+    position: relative;
+    display: inline-block;
+}
+
+section.apostila h1::after {
+    content: "";
+    display: block;
+    width: 56px;
+    height: 5px;
+    margin-top: 10px;
+    background-color: #4561DE;
+    border-radius: 10px;
 }
 
 span#semApostilas {
@@ -23,24 +43,43 @@ span#semApostilas {
 }
 
 div.apostila {
-    margin: 50px;
-    border: 1.5px solid rgb(201, 201, 201);
+    margin: 24px 20px;
+    border: none;
     border-radius: 20px;
-    padding: 25px;
+    padding: 25px 30px;
     background-color: white;
+    box-shadow: 0px 4px 18px rgba(69, 97, 222, 0.08);
     overflow: hidden;
     display: flex;
-    background-image: url(../Image/background.jpg);
-    background-repeat: repeat;
-    background-size: 300px;
+    align-items: center;
+    position: relative;
     min-width: fit-content;
 }
 
+div.apostila::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 45%;
+    max-width: 380px;
+    pointer-events: none;
+    opacity: 0.6;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cg fill='none' stroke='%234561DE' stroke-width='2' opacity='0.14'%3E%3Crect x='14' y='24' width='34' height='24' rx='4'/%3E%3Cpath d='M22 24 v-8 h18 v8'/%3E%3Ccircle cx='140' cy='34' r='16'/%3E%3Cpath d='M134 34 h12 M140 28 v12'/%3E%3Cpath d='M90 90 l9 -9 M90 90 l9 9 M90 90 l-9 9 M90 90 l-9 -9'/%3E%3Crect x='120' y='120' width='26' height='26' rx='5' transform='rotate(18 133 133)'/%3E%3Ctext x='20' y='150' font-size='30' font-family='Arial' stroke='none' fill='%234561DE'%3E?%3C/text%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px;
+    z-index: 0;
+}
+
 img.apostila {
-    height: 200px;
-    border-radius: 20px;
+    height: 190px;
+    border-radius: 16px;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.322);
     cursor: pointer;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
 }
 
 div.infoApostilaIndex {
@@ -49,13 +88,34 @@ div.infoApostilaIndex {
     flex: 1;
     min-width: 0;
     margin: auto 25px;
-    gap: 18px;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
 }
 
 a.apostila {
     color: #4561DE;
     text-decoration: none;
     font-size: 30px;
+}
+
+span.contagemApostila {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #4561DE;
+    font-weight: bold;
+}
+
+span.contagemApostila svg {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    border: 1.5px solid #4561DE;
+    border-radius: 50%;
+    padding: 4px;
+    box-sizing: border-box;
 }
 
 div#indexLoad {
@@ -67,21 +127,28 @@ div#indexLoad {
 
     section.apostila {
         width: 95%;
-        margin: 12px auto;
+        margin: 20px auto;
     }
 
     section.apostila h1 {
-        font-size: 32px;
-        margin: 12px;
+        font-size: 30px;
+        margin: 8px 12px 6px;
     }
 
     div.apostila {
-        margin: 20px;
-        padding: 30px 30px 20px 30px;
+        margin: 16px 8px;
+        padding: 30px 24px 24px;
         flex-direction: column;
         align-items: center;
         min-width: 0;
     }
+
+    div.apostila::after {
+        width: 100%;
+        max-width: none;
+        opacity: 0.35;
+    }
+
     img.apostila {
         height: auto;
         width: 80%;
@@ -95,8 +162,12 @@ div#indexLoad {
     }
 
     a.apostila {
-        font-size: 30px;
+        font-size: 28px;
         text-align: center;
+    }
+
+    span.contagemApostila {
+        justify-content: center;
     }
 
 }
