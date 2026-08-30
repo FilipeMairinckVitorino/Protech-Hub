@@ -61,6 +61,7 @@ a.apostila {
     color: #4561DE;
     text-decoration: none;
     font-size: 30px;
+    width: fit-content;
 }
 
 div#indexLoad {
