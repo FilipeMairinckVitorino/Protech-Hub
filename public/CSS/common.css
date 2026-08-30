@@ -85,6 +85,13 @@ button.logout:hover {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.356);
 }
 
+/* Nome do usuário no header: nome completo no desktop, só a inicial no mobile,
+   pra não estourar o layout com nomes grandes. As spans .nomeCompleto/.nomeInicial
+   são geradas pela função nomeViewHTML() em Script/exportFunctions.js */
+header span#nome_view span.nomeInicial {
+    display: none;
+}
+
 main {
     flex: 1;
 }
@@ -213,6 +220,23 @@ span.statusApostila.completa {
         height: auto;
         font-size: 14px;
         max-width: 100%;
+    }
+
+    header span#nome_view {
+        min-width: 0;
+        width: 40px;
+        padding: 0;
+        border-radius: 50%;
+        aspect-ratio: 1;
+        font-size: 18px;
+    }
+
+    header span#nome_view span.nomeCompleto {
+        display: none;
+    }
+
+    header span#nome_view span.nomeInicial {
+        display: inline;
     }
 
     footer {
